@@ -15,7 +15,7 @@
     <% end %>
   </div>
 
- <%= form.fields_for :mon_image do |mon_image_fields| %>
+ <%= form.fields_for :mon_images do |mon_image_fields| %>
   <div>
     <%= mon_image_fields.label :image %><br>
     <%= mon_image_fields.file_field :image, accept: [:jpg, :png, :jpeg] %>

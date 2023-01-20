@@ -9,16 +9,21 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @article.mon_images.build
   end
 
   def create
     @article = Article.new(article_params)
     if @article.save
+     
       if params[:mon_image].present? && params[:mon_image][:image].present?
-        @mon_image = @article.create_mon_image(image: params[:mon_image][:image])
-        image = ImageProcessing::MiniMagick.source(@mon_image.image.attach.path)
-        image.resize_to_limit(width: 800, height: 800)
-        image.call
+       # MonImage.create(imageable: @article, image: params[:mon_image][:image])
+       
+       @mon_image = @article.create_mon_image(image: params[:mon_image][:image])
+       #image = ImageProcessing::MiniMagick.source(@mon_image.image.attach.path)
+      #### @article.mon_images.create(image: params[:mon_image][:image])
+      
+
       end
       redirect_to @article
     else
@@ -48,6 +53,10 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :mon_image)
+    #params.require(:article).permit(:title, :body, :mon_image)
+    params.require(:article).permit(:title, :body, mon_images_attributes: [:image])
+    #params.require(:article).permit(:title, :body, mon_image: [])
+ 
+
   end
 end
