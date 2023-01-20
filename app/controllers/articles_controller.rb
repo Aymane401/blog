@@ -33,11 +33,14 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    @article.mon_images.build
   end
 
   def update
     @article = Article.find(params[:id])
-
+    if params[:mon_images_attributes].present?
+      @article.mon_images.create(image: params[:mon_images_attributes][:image])
+    end
     if @article.update(article_params)
       redirect_to @article
     else
@@ -54,7 +57,7 @@ class ArticlesController < ApplicationController
 
   def article_params
     #params.require(:article).permit(:title, :body, :mon_image)
-    params.require(:article).permit(:title, :body, mon_images_attributes: [:image])
+    params.require(:article).permit(:title, :body, mon_images_attributes: [:id, :image])
     #params.require(:article).permit(:title, :body, mon_image: [])
  
 
