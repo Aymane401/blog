@@ -38,8 +38,10 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-    if params[:mon_images_attributes].present?
-      @article.mon_images.create(image: params[:mon_images_attributes][:image])
+    if params[:image].present?
+      params[:image].each do |img|
+        @article.mon_images.new(image: img)
+      end
     end
     if @article.update(article_params)
       redirect_to @article

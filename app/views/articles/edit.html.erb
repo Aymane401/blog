@@ -17,13 +17,15 @@
     <% end %>
   </div>
 
-  <%= form.fields_for :mon_images do |mon_image_fields| %>
   <div>
-    <%= mon_image_fields.label :image %><br>
-    <%= mon_image_fields.file_field :image, accept: [:jpg, :png, :jpeg] %>
-    <%= mon_image_fields.hidden_field :_destroy %>
+    <%= form.label :image, "Upload Image" %><br>
+    <%= form.file_field :image, accept: [:jpg, :png, :jpeg], multiple: true %>
   </div>
-<% end %>
+
+  <%= form.fields_for :mon_images do |mon_image_fields| %>
+    <%= mon_image_fields.hidden_field :_destroy %>
+  <% end %>
+  <div>
 
   <div>
     <%= form.submit %>
