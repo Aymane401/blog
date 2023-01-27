@@ -6,11 +6,117 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+
+      function addArticle(mytitle,mybody,mystatus){
+        $.ajax({
+          type: "POST",
+          url: "/api/articles",
+          data: {
+            title: mytitle,
+            body: mybody,
+            status: mystatus
+          }
+        });
+      }
+
+      function deleteArticle(id)
+      {
+        $.ajax({
+          type: 'DELETE',
+          url: "/api/articles/"+id,
+          data: id
+        })
+      }
+
+      function showArticle(id)
+      {
+        $.ajax({
+          url: "/api/articles/"+id,
+          type: 'GET',
+          data: id,
+          success: function( data ){ 
+        
+          console.log(JSON.stringify(data));
+          }
+        });
+      }
+
+
+      function addComment(myCommenter,myBody,article_id,myStatus)
+      {
+        $.ajax({
+          type: "POST",
+          url: "/api/comments",
+          data: {
+            commenter: myCommenter,
+            body: myBody,
+            article_id: article_id,
+            status: myStatus
+          },
+          success: function( data ){ 
+        
+          console.log("SUCCESS");
+          }
+        });
+      }
+
+      function showComment(id)
+      {
+        $.ajax({
+          url: "/api/comments/"+id,
+          type: 'GET',
+          data: id,
+          success: function( data ){ 
+        
+          console.log(JSON.stringify(data));
+          }
+        });
+      }
+      function showComments(article_id)
+      {
+        $.ajax({
+          url: "/api/comments",
+          type: 'GET',
+          data: {id:article_id},
+          error: function( xhr ){ 
+          alert("ERROR ON SUBMIT");
+          },
+          success: function( data ){ 
+        
+          console.log(JSON.stringify(data));
+          }
+        });
+      }
+
+      function deleteComment(id)
+      {
+        $.ajax({
+          type: 'DELETE',
+          url: "/api/comments/"+id,
+          data: id
+        })
+      }
+
+    </script>
+
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    
+    <%= render 'layouts/navBar' %>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

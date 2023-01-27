@@ -2,9 +2,10 @@
 
 <p><%= @article.body %></p>
 
-<% if @article.mon_images.any? %>
-  <%= image_tag @article.mon_images.first.image %>
+<% if @article.mon_image %>
+  <%= image_tag @article.mon_image.image, size: "100x100" %>
 <% end %>
+
 <ul>
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
 
@@ -13,3 +14,7 @@
                     turbo_confirm: "Are you sure?"
                   } %></li>
 </ul>
+<%= render @article.comments %>
+
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %>

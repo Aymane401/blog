@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!
   def index
     @articles = Article.all
   end
@@ -9,39 +10,38 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    @article.mon_images.build
+    @article.build_mon_image
+  
   end
 
   def create
+   
     @article = Article.new(article_params)
+
     if @article.save
      
-      if params[:mon_image].present? && params[:mon_image][:image].present?
-       # MonImage.create(imageable: @article, image: params[:mon_image][:image])
-       
-       @mon_image = @article.create_mon_image(image: params[:mon_image][:image])
-       #image = ImageProcessing::MiniMagick.source(@mon_image.image.attach.path)
-      #### @article.mon_images.create(image: params[:mon_image][:image])
-      
-
-      end
+    
       redirect_to @article
     else
+      @article.build_mon_image
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    
     @article = Article.find(params[:id])
-    @article.mon_images.build
+    @article.build_mon_image unless @article.mon_image
   end
+
+
+
 
   def update
     @article = Article.find(params[:id])
-    if params[:image].present?
-      params[:image].each do |img|
-        @article.mon_images.new(image: img)
-      end
+    if params[:mon_images_attributes].present?
+    
+      @article.mon_images.update(image: params[:mon_images_attributes][:image])
     end
     if @article.update(article_params)
       redirect_to @article
@@ -49,6 +49,8 @@ class ArticlesController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
+ 
 
   def destroy
     @article = Article.find(params[:id])
@@ -59,7 +61,8 @@ class ArticlesController < ApplicationController
 
   def article_params
     #params.require(:article).permit(:title, :body, :mon_image)
-    params.require(:article).permit(:title, :body, mon_images_attributes: [:id, :image])
+   # params.require(:article).permit(:title, :body, mon_image_attributes: [:id, :image])
+   params.require(:article).permit(:title, :body, mon_image_attributes: [:id, :image])
     #params.require(:article).permit(:title, :body, mon_image: [])
  
 
