@@ -1,7 +1,8 @@
 require "test_helper"
 
 class CommentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should not save comment without an article" do
+    comment = Comment.new(commenter: "John", body: "This is a comment")
+    assert_not comment.save, "Saved the comment without an associated article"
+end
 end

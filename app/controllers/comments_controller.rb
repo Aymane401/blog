@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-    before_action :authenticate_user!, only: :destroy
+     before_action :authenticate_user!, only: :destroy
 
     def create
       @article = Article.find(params[:article_id])
@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
       redirect_to article_path(@article)
     end
   
+    
     def destroy
       @article = Article.find(params[:article_id])
       @comment = @article.comments.find(params[:id])
@@ -15,7 +16,7 @@ class CommentsController < ApplicationController
       redirect_to article_path(@article), status: 303
     end
   
-     private
+    private
       def comment_params
         params.require(:comment).permit(:commenter, :body, :status)
       end

@@ -17,7 +17,7 @@ class Api::CommentsController < ApiController
     end
 
     def create
-        comment = Comment.new(commenter:params[:commenter],body:params[:body], article_id:params[:article_id], status:params[:status])
+        comment = Comment.new(comment_params)
         
         if comment.save
             render json: "success"
@@ -37,3 +37,8 @@ class Api::CommentsController < ApiController
         end
     end
 end
+
+private
+  def comment_params
+    params.require(:comment).permit(:commenter, :body, :article_id, :status)
+  end
