@@ -4,6 +4,7 @@ import "controllers"
 import "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js";
 import "controllers/myscript"
 
+
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()

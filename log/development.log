@@ -31812,3 +31812,947 @@ Processing by ArticlesController#index as TURBO_STREAM
 Completed 200 OK in 11ms (Views: 8.3ms | ActiveRecord: 0.2ms | Allocations: 5610)
 
 
+Started GET "/" for ::1 at 2023-01-27 13:38:56 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 7.5ms | Allocations: 4597)
+  Rendered layouts/_navBar.html.erb (Duration: 0.8ms | Allocations: 786)
+  Rendered layout layouts/application.html.erb (Duration: 747.5ms | Allocations: 71122)
+Completed 200 OK in 773ms (Views: 749.2ms | ActiveRecord: 0.9ms | Allocations: 86664)
+
+
+Started GET "/articles/4" for ::1 at 2023-01-27 13:38:59 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.1ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 4], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of templates [0 times] (Duration: 0.1ms | Allocations: 32)
+  Rendered comments/_form.html.erb (Duration: 15.9ms | Allocations: 8462)
+  Rendered articles/show.html.erb within layouts/application (Duration: 42.9ms | Allocations: 18603)
+  Rendered layouts/_navBar.html.erb (Duration: 0.5ms | Allocations: 498)
+  Rendered layout layouts/application.html.erb (Duration: 46.4ms | Allocations: 21689)
+Completed 200 OK in 52ms (Views: 45.7ms | ActiveRecord: 1.6ms | Allocations: 24733)
+
+
+Started POST "/articles/4/comments" for ::1 at 2023-01-27 13:39:06 -0500
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"2222222", "body"=>"222222222222222222222222222222222222222", "status"=>"public"}, "commit"=>"Create Comment", "article_id"=>"4"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+  [1m[36mComment Create (0.7ms)[0m  [1m[32mINSERT INTO "comments" ("commenter", "body", "article_id", "created_at", "updated_at", "status") VALUES (?, ?, ?, ?, ?, ?)[0m  [["commenter", "2222222"], ["body", "222222222222222222222222222222222222222"], ["article_id", 4], ["created_at", "2023-01-27 18:39:06.054167"], ["updated_at", "2023-01-27 18:39:06.054167"], ["status", "public"]]
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+Redirected to http://localhost:3000/articles/4
+Completed 302 Found in 13ms (ActiveRecord: 5.3ms | Allocations: 4823)
+
+
+Started GET "/articles/4" for ::1 at 2023-01-27 13:39:06 -0500
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.1ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 4], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 0.9ms | Allocations: 489)
+  Rendered comments/_form.html.erb (Duration: 1.8ms | Allocations: 1263)
+  Rendered articles/show.html.erb within layouts/application (Duration: 5.8ms | Allocations: 3596)
+  Rendered layouts/_navBar.html.erb (Duration: 0.3ms | Allocations: 479)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 6632)
+Completed 200 OK in 12ms (Views: 9.3ms | ActiveRecord: 0.3ms | Allocations: 8777)
+
+
+Started GET "/articles/4.son" for ::1 at 2023-01-27 13:49:33 -0500
+Processing by ArticlesController#show as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.2ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 4], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 0.5ms | Allocations: 187)
+  Rendered comments/_form.html.erb (Duration: 1.5ms | Allocations: 1198)
+  Rendered articles/show.html.erb within layouts/application (Duration: 5.7ms | Allocations: 3055)
+  Rendered layouts/_navBar.html.erb (Duration: 1.0ms | Allocations: 479)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 5980)
+Completed 200 OK in 16ms (Views: 9.9ms | ActiveRecord: 0.9ms | Allocations: 8283)
+
+
+Started GET "/articles/4.json" for ::1 at 2023-01-27 13:49:36 -0500
+Processing by ArticlesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+Completed 406 Not Acceptable in 4ms (ActiveRecord: 0.2ms | Allocations: 2540)
+
+
+  
+ActionController::UnknownFormat (ArticlesController#show is missing a template for this request format and variant.
+
+request.formats: ["application/json"]
+request.variant: []):
+  
+actionpack (7.0.4) lib/action_controller/metal/implicit_render.rb:42:in `default_render'
+actionpack (7.0.4) lib/action_controller/metal/basic_implicit_render.rb:6:in `block in send_action'
+<internal:kernel>:90:in `tap'
+actionpack (7.0.4) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (7.0.4) lib/abstract_controller/base.rb:215:in `process_action'
+actionpack (7.0.4) lib/action_controller/metal/rendering.rb:53:in `process_action'
+actionpack (7.0.4) lib/abstract_controller/callbacks.rb:234:in `block in process_action'
+activesupport (7.0.4) lib/active_support/callbacks.rb:118:in `block in run_callbacks'
+actiontext (7.0.4) lib/action_text/rendering.rb:20:in `with_renderer'
+actiontext (7.0.4) lib/action_text/engine.rb:69:in `block (4 levels) in <class:Engine>'
+activesupport (7.0.4) lib/active_support/callbacks.rb:127:in `instance_exec'
+activesupport (7.0.4) lib/active_support/callbacks.rb:127:in `block in run_callbacks'
+activesupport (7.0.4) lib/active_support/callbacks.rb:138:in `run_callbacks'
+actionpack (7.0.4) lib/abstract_controller/callbacks.rb:233:in `process_action'
+actionpack (7.0.4) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (7.0.4) lib/action_controller/metal/instrumentation.rb:67:in `block in process_action'
+activesupport (7.0.4) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.0.4) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (7.0.4) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.0.4) lib/action_controller/metal/instrumentation.rb:66:in `process_action'
+actionpack (7.0.4) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.0.4) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (7.0.4) lib/abstract_controller/base.rb:151:in `process'
+actionview (7.0.4) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:852:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.4) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/cookies.rb:696:in `call'
+activerecord (7.0.4) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+webpacker (5.4.3) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.6) lib/rack/proxy.rb:87:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/articles/4/comments" for ::1 at 2023-01-27 13:49:49 -0500
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"commenter"=>"Ayman", "body"=>"aaaaaaaaaaaaaaaaaa", "status"=>"public"}, "commit"=>"Create Comment", "article_id"=>"4"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("commenter", "body", "article_id", "created_at", "updated_at", "status") VALUES (?, ?, ?, ?, ?, ?)[0m  [["commenter", "Ayman"], ["body", "aaaaaaaaaaaaaaaaaa"], ["article_id", 4], ["created_at", "2023-01-27 18:49:49.264841"], ["updated_at", "2023-01-27 18:49:49.264841"], ["status", "public"]]
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:7:in `create'
+Redirected to http://localhost:3000/articles/4
+Completed 302 Found in 15ms (ActiveRecord: 4.6ms | Allocations: 3344)
+
+
+Started GET "/articles/4" for ::1 at 2023-01-27 13:49:49 -0500
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.1ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 4], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [2 times] (Duration: 0.4ms | Allocations: 315)
+  Rendered comments/_form.html.erb (Duration: 1.6ms | Allocations: 1264)
+  Rendered articles/show.html.erb within layouts/application (Duration: 4.8ms | Allocations: 3236)
+  Rendered layouts/_navBar.html.erb (Duration: 0.3ms | Allocations: 479)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | Allocations: 6276)
+Completed 200 OK in 11ms (Views: 7.5ms | ActiveRecord: 0.3ms | Allocations: 8368)
+
+
+Started GET "/articles/4/comment/1.json" for ::1 at 2023-01-27 13:50:07 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/articles/4/comment/1.json"):
+  
+Started GET "/articles/4/comment/1." for ::1 at 2023-01-27 13:50:16 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/articles/4/comment/1."):
+  
+Started GET "/articles/4/comment/1" for ::1 at 2023-01-27 13:50:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/articles/4/comment/1"):
+  
+Started GET "/articles/4" for ::1 at 2023-01-27 13:52:04 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.1ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 4], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [2 times] (Duration: 0.6ms | Allocations: 312)
+  Rendered comments/_form.html.erb (Duration: 1.7ms | Allocations: 1282)
+  Rendered articles/show.html.erb within layouts/application (Duration: 5.5ms | Allocations: 3274)
+  Rendered layouts/_navBar.html.erb (Duration: 0.3ms | Allocations: 479)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 6318)
+Completed 200 OK in 15ms (Views: 11.6ms | ActiveRecord: 0.3ms | Allocations: 8527)
+
+
+Started GET "/api/comments/1" for ::1 at 2023-01-27 13:54:23 -0500
+Processing by Api::CommentsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:15:in `show'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1366)
+
+
+Started GET "/api/comments/0" for ::1 at 2023-01-27 13:54:26 -0500
+Processing by Api::CommentsController#show as JSON
+  Parameters: {"id"=>"0"}
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:15:in `show'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 521)
+
+
+Started GET "/api/comments?id=0" for ::1 at 2023-01-27 13:54:51 -0500
+Processing by Api::CommentsController#index as JSON
+  Parameters: {"id"=>"0"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 1074)
+
+
+Started GET "/api/comments?id=1" for ::1 at 2023-01-27 13:54:56 -0500
+Processing by Api::CommentsController#index as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:4:in `index'
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/controllers/api/comments_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 1652)
+
+
+Started GET "/" for ::1 at 2023-01-27 14:02:16 -0500
+Processing by ArticlesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 1073)
+  Rendered layouts/_navBar.html.erb (Duration: 1.6ms | Allocations: 759)
+  Rendered layout layouts/application.html.erb (Duration: 9.9ms | Allocations: 4905)
+Completed 200 OK in 16ms (Views: 11.8ms | ActiveRecord: 0.6ms | Allocations: 7315)
+
+
+Started GET "/api/comments?id=1" for ::1 at 2023-01-27 14:02:33 -0500
+Processing by Api::CommentsController#index as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:4:in `index'
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/controllers/api/comments_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 1717)
+
+
+Started GET "/articles/1" for ::1 at 2023-01-27 14:02:39 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.2ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 1], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "MonImage"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:6
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [3 times] (Duration: 1.2ms | Allocations: 682)
+  Rendered comments/_form.html.erb (Duration: 3.9ms | Allocations: 1593)
+  Rendered articles/show.html.erb within layouts/application (Duration: 66.7ms | Allocations: 34370)
+  Rendered layouts/_navBar.html.erb (Duration: 0.4ms | Allocations: 479)
+  Rendered layout layouts/application.html.erb (Duration: 70.0ms | Allocations: 37419)
+Completed 200 OK in 73ms (Views: 68.8ms | ActiveRecord: 1.8ms | Allocations: 39580)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ad7eba6d94c025fc6dea6d320bc9509248f186fc/1.PNG" for ::1 at 2023-01-27 14:02:39 -0500
+Processing by ActiveStorage::Blobs::RedirectController#show as */*
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ad7eba6d94c025fc6dea6d320bc9509248f186fc", "filename"=>"1"}
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[36m  Disk Storage (0.9ms) [0m[34mGenerated URL for file at key: nqqpyrzlxg8bgfofxw9oohtallug (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhibkZ4Y0hseWVteDRaemhpWjJadlpuaDNPVzl2YUhSaGJHeDFad1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpFdVVFNUhJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWN4TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDIzLTAxLTI3VDE5OjA3OjM5LjM2OVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--dccf580e474fc8282e21e342f24159907ff1ec71/1.PNG)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhibkZ4Y0hseWVteDRaemhpWjJadlpuaDNPVzl2YUhSaGJHeDFad1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpFdVVFNUhJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWN4TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDIzLTAxLTI3VDE5OjA3OjM5LjM2OVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--dccf580e474fc8282e21e342f24159907ff1ec71/1.PNG
+Completed 302 Found in 5ms (ActiveRecord: 0.1ms | Allocations: 2773)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhibkZ4Y0hseWVteDRaemhpWjJadlpuaDNPVzl2YUhSaGJHeDFad1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpFdVVFNUhJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWN4TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDIzLTAxLTI3VDE5OjA3OjM5LjM2OVoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--dccf580e474fc8282e21e342f24159907ff1ec71/1.PNG" for ::1 at 2023-01-27 14:02:39 -0500
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"1"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 329)
+
+
+Started GET "/api/articles/1" for ::1 at 2023-01-27 14:08:26 -0500
+Processing by Api::ArticlesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/articles_controller.rb:9:in `show'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.6ms | Allocations: 1034)
+
+
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" ORDER BY "comments"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/api/comments?id=1" for ::1 at 2023-01-27 14:18:23 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::CommentsController#index as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:4:in `index'
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/controllers/api/comments_controller.rb:8:in `index'
+Completed 200 OK in 28ms (Views: 0.1ms | ActiveRecord: 1.5ms | Allocations: 18132)
+
+
+Started GET "/api/comments?id=1" for ::1 at 2023-01-27 14:18:53 -0500
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for Api::CommentsController):
+  
+actionpack (7.0.4) lib/abstract_controller/base.rb:146:in `process'
+actionview (7.0.4) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.4) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:852:in `call'
+warden (1.2.9) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.9) lib/warden/manager.rb:34:in `catch'
+warden (1.2.9) lib/warden/manager.rb:34:in `call'
+rack (2.2.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.4) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.4) lib/rack/head.rb:12:in `call'
+actionpack (7.0.4) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.4) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.4) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.4) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/cookies.rb:696:in `call'
+activerecord (7.0.4) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+webpacker (5.4.3) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.6) lib/rack/proxy.rb:87:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/" for ::1 at 2023-01-27 14:45:56 -0500
+Processing by ArticlesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 10.2ms | Allocations: 4597)
+  Rendered layouts/_navBar.html.erb (Duration: 0.8ms | Allocations: 781)
+  Rendered layout layouts/application.html.erb (Duration: 58.9ms | Allocations: 53578)
+Completed 200 OK in 89ms (Views: 60.6ms | ActiveRecord: 1.2ms | Allocations: 69173)
+
+
+Started GET "/articles/2" for ::1 at 2023-01-27 14:45:57 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.1ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 2], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "MonImage"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:6
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 2]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [4 times] (Duration: 2.6ms | Allocations: 1172)
+  Rendered comments/_form.html.erb (Duration: 8.3ms | Allocations: 4513)
+  Rendered articles/show.html.erb within layouts/application (Duration: 97.1ms | Allocations: 42329)
+  Rendered layouts/_navBar.html.erb (Duration: 0.3ms | Allocations: 487)
+  Rendered layout layouts/application.html.erb (Duration: 99.9ms | Allocations: 45405)
+Completed 200 OK in 105ms (Views: 97.4ms | ActiveRecord: 3.3ms | Allocations: 48336)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b0c754b8f24276a1d1e6b1ff322ded63d17cdd32/laser.png" for ::1 at 2023-01-27 14:45:58 -0500
+Processing by ActiveStorage::Blobs::RedirectController#show as PNG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b0c754b8f24276a1d1e6b1ff322ded63d17cdd32", "filename"=>"laser"}
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[36m  Disk Storage (0.6ms) [0m[34mGenerated URL for file at key: j9dhe74kw02lmzg2r7s6y3d5kc3r (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhamxrYUdVM05HdDNNREpzYlhwbk1uSTNjelo1TTJRMWEyTXpjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW14aGMyVnlMbkJ1WnlJN0lHWnBiR1Z1WVcxbEtqMVZWRVl0T0NjbmJHRnpaWEl1Y0c1bkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSU9hVzFoWjJVdmNHNW5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIzLTAxLTI3VDE5OjUwOjU4LjE0MFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--891df7540d8c316f0230e8cf7289cc5731e76fba/laser.png)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhamxrYUdVM05HdDNNREpzYlhwbk1uSTNjelo1TTJRMWEyTXpjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW14aGMyVnlMbkJ1WnlJN0lHWnBiR1Z1WVcxbEtqMVZWRVl0T0NjbmJHRnpaWEl1Y0c1bkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSU9hVzFoWjJVdmNHNW5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIzLTAxLTI3VDE5OjUwOjU4LjE0MFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--891df7540d8c316f0230e8cf7289cc5731e76fba/laser.png
+Completed 302 Found in 4ms (ActiveRecord: 0.1ms | Allocations: 2827)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhamxrYUdVM05HdDNNREpzYlhwbk1uSTNjelo1TTJRMWEyTXpjZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW14aGMyVnlMbkJ1WnlJN0lHWnBiR1Z1WVcxbEtqMVZWRVl0T0NjbmJHRnpaWEl1Y0c1bkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSU9hVzFoWjJVdmNHNW5CanNHVkRvUmMyVnlkbWxqWlY5dVlXMWxPZ3BzYjJOaGJBPT0iLCJleHAiOiIyMDIzLTAxLTI3VDE5OjUwOjU4LjE0MFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--891df7540d8c316f0230e8cf7289cc5731e76fba/laser.png" for ::1 at 2023-01-27 14:45:58 -0500
+Processing by ActiveStorage::DiskController#show as PNG
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"laser"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 329)
+
+
+Started GET "/articles/1" for ::1 at 2023-01-27 14:46:00 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.1ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 1], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "MonImage"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:6
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [3 times] (Duration: 0.5ms | Allocations: 418)
+  Rendered comments/_form.html.erb (Duration: 2.2ms | Allocations: 1281)
+  Rendered articles/show.html.erb within layouts/application (Duration: 9.1ms | Allocations: 5293)
+  Rendered layouts/_navBar.html.erb (Duration: 0.3ms | Allocations: 479)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | Allocations: 8336)
+Completed 200 OK in 17ms (Views: 13.0ms | ActiveRecord: 0.5ms | Allocations: 10582)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ad7eba6d94c025fc6dea6d320bc9509248f186fc/1.PNG" for ::1 at 2023-01-27 14:46:00 -0500
+Processing by ActiveStorage::Blobs::RedirectController#show as */*
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ad7eba6d94c025fc6dea6d320bc9509248f186fc", "filename"=>"1"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: nqqpyrzlxg8bgfofxw9oohtallug (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhibkZ4Y0hseWVteDRaemhpWjJadlpuaDNPVzl2YUhSaGJHeDFad1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpFdVVFNUhJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWN4TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDIzLTAxLTI3VDE5OjUxOjAwLjMzMFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--6697bcb682ea5f2a9daf49793454373589bd28b9/1.PNG)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhibkZ4Y0hseWVteDRaemhpWjJadlpuaDNPVzl2YUhSaGJHeDFad1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpFdVVFNUhJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWN4TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDIzLTAxLTI3VDE5OjUxOjAwLjMzMFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--6697bcb682ea5f2a9daf49793454373589bd28b9/1.PNG
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 1358)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhibkZ4Y0hseWVteDRaemhpWjJadlpuaDNPVzl2YUhSaGJHeDFad1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpFdVVFNUhJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWN4TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDIzLTAxLTI3VDE5OjUxOjAwLjMzMFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--6697bcb682ea5f2a9daf49793454373589bd28b9/1.PNG" for ::1 at 2023-01-27 14:46:00 -0500
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"1"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 167)
+
+
+Started GET "/api/comments/1" for ::1 at 2023-01-27 14:46:23 -0500
+Processing by Api::CommentsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:15:in `show'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1364)
+
+
+Started GET "/api/comments?id=1" for ::1 at 2023-01-27 14:46:28 -0500
+Processing by Api::CommentsController#index as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:4:in `index'
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/controllers/api/comments_controller.rb:8:in `index'
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 2260)
+
+
+Started POST "/api/comments" for ::1 at 2023-01-27 14:46:37 -0500
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"commenter"=>"Hamdi", "body"=>"Body of comment", "article_id"=>"1", "status"=>"private"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 575)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: comment
+Did you mean?  commenter):
+  
+app/controllers/api/comments_controller.rb:43:in `comment_params'
+app/controllers/api/comments_controller.rb:20:in `create'
+Started GET "/articles/1" for ::1 at 2023-01-27 14:46:42 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.2ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 1], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "MonImage"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:6
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [3 times] (Duration: 0.8ms | Allocations: 418)
+  Rendered comments/_form.html.erb (Duration: 1.4ms | Allocations: 1285)
+  Rendered articles/show.html.erb within layouts/application (Duration: 10.9ms | Allocations: 5301)
+  Rendered layouts/_navBar.html.erb (Duration: 0.3ms | Allocations: 479)
+  Rendered layout layouts/application.html.erb (Duration: 14.0ms | Allocations: 8351)
+Completed 200 OK in 21ms (Views: 14.3ms | ActiveRecord: 0.9ms | Allocations: 10626)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhibkZ4Y0hseWVteDRaemhpWjJadlpuaDNPVzl2YUhSaGJHeDFad1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpFdVVFNUhJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWN4TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDIzLTAxLTI3VDE5OjUxOjAwLjMzMFoiLCJwdXIiOiJibG9iX2tleSJ9fQ==--6697bcb682ea5f2a9daf49793454373589bd28b9/1.PNG" for ::1 at 2023-01-27 14:46:42 -0500
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms | Allocations: 180)
+
+
+Started GET "/" for ::1 at 2023-01-27 15:03:03 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  ↳ app/views/articles/index.html.erb:4
+  Rendered articles/index.html.erb within layouts/application (Duration: 8.6ms | Allocations: 4597)
+  Rendered layouts/_navBar.html.erb (Duration: 1.0ms | Allocations: 781)
+  Rendered layout layouts/application.html.erb (Duration: 69.5ms | Allocations: 54292)
+Completed 200 OK in 98ms (Views: 71.4ms | ActiveRecord: 1.5ms | Allocations: 69847)
+
+
+Started GET "/articles/4" for ::1 at 2023-01-27 15:03:06 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.7ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 4], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [2 times] (Duration: 2.6ms | Allocations: 1039)
+  Rendered comments/_form.html.erb (Duration: 15.3ms | Allocations: 4522)
+  Rendered articles/show.html.erb within layouts/application (Duration: 50.7ms | Allocations: 19468)
+  Rendered layouts/_navBar.html.erb (Duration: 0.4ms | Allocations: 487)
+  Rendered layout layouts/application.html.erb (Duration: 54.0ms | Allocations: 22544)
+Completed 200 OK in 60ms (Views: 52.5ms | ActiveRecord: 2.3ms | Allocations: 25601)
+
+
+Started POST "/api/comments" for ::1 at 2023-01-27 15:03:15 -0500
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"commenter"=>"Hamdi", "body"=>"Body of comment", "article_id"=>"1", "status"=>"private"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 609)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: comment
+Did you mean?  commenter):
+  
+app/controllers/api/comments_controller.rb:43:in `comment_params'
+app/controllers/api/comments_controller.rb:20:in `create'
+Started GET "/articles/4" for ::1 at 2023-01-27 15:03:20 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.1ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 4], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [2 times] (Duration: 0.6ms | Allocations: 316)
+  Rendered comments/_form.html.erb (Duration: 4.4ms | Allocations: 1286)
+  Rendered articles/show.html.erb within layouts/application (Duration: 10.0ms | Allocations: 3311)
+  Rendered layouts/_navBar.html.erb (Duration: 0.4ms | Allocations: 479)
+  Rendered layout layouts/application.html.erb (Duration: 15.4ms | Allocations: 6358)
+Completed 200 OK in 20ms (Views: 15.9ms | ActiveRecord: 0.5ms | Allocations: 8614)
+
+
+Started GET "/api/comments/1" for ::1 at 2023-01-27 15:04:28 -0500
+Processing by Api::CommentsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:15:in `show'
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 1250)
+
+
+Started GET "/api/comments?id=1" for ::1 at 2023-01-27 15:04:33 -0500
+Processing by Api::CommentsController#index as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:4:in `index'
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/controllers/api/comments_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 2226)
+
+
+Started GET "/api/comments/0" for ::1 at 2023-01-27 15:04:41 -0500
+Processing by Api::CommentsController#show as JSON
+  Parameters: {"id"=>"0"}
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:15:in `show'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.1ms | Allocations: 532)
+
+
+Started GET "/api/comments/3" for ::1 at 2023-01-27 15:04:43 -0500
+Processing by Api::CommentsController#show as JSON
+  Parameters: {"id"=>"3"}
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:15:in `show'
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 653)
+
+
+Started POST "/api/comments" for ::1 at 2023-01-27 15:04:49 -0500
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"commenter"=>"Hamdi", "body"=>"Body of comment", "article_id"=>"1", "status"=>"private"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 508)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: comment
+Did you mean?  commenter):
+  
+app/controllers/api/comments_controller.rb:43:in `comment_params'
+app/controllers/api/comments_controller.rb:20:in `create'
+Started GET "/articles/4" for ::1 at 2023-01-27 15:04:52 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.1ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 4], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [2 times] (Duration: 0.8ms | Allocations: 294)
+  Rendered comments/_form.html.erb (Duration: 1.7ms | Allocations: 1202)
+  Rendered articles/show.html.erb within layouts/application (Duration: 6.3ms | Allocations: 3121)
+  Rendered layouts/_navBar.html.erb (Duration: 0.6ms | Allocations: 479)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 6063)
+Completed 200 OK in 14ms (Views: 10.8ms | ActiveRecord: 0.4ms | Allocations: 8069)
+
+
+Started POST "/api/comments" for ::1 at 2023-01-27 15:12:00 -0500
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"commenter"=>"Hamdi", "body"=>"Body of comment", "article_id"=>"1", "status"=>"private"}
+Completed 400 Bad Request in 0ms (Allocations: 483)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: comment
+Did you mean?  commenter):
+  
+app/controllers/api/comments_controller.rb:43:in `comment_params'
+app/controllers/api/comments_controller.rb:20:in `create'
+Started GET "/articles/4" for ::1 at 2023-01-27 15:13:39 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.2ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 4], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [2 times] (Duration: 1.4ms | Allocations: 539)
+  Rendered comments/_form.html.erb (Duration: 2.2ms | Allocations: 1599)
+  Rendered articles/show.html.erb within layouts/application (Duration: 9.4ms | Allocations: 4426)
+  Rendered layouts/_navBar.html.erb (Duration: 1.0ms | Allocations: 740)
+  Rendered layout layouts/application.html.erb (Duration: 13.4ms | Allocations: 8203)
+Completed 200 OK in 20ms (Views: 14.8ms | ActiveRecord: 0.9ms | Allocations: 11001)
+
+
+Started POST "/api/comments" for ::1 at 2023-01-27 15:13:47 -0500
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"commenter"=>"Hamdi", "body"=>"Body of comment", "article_id"=>"1", "status"=>"private"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 507)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: comment
+Did you mean?  commenter):
+  
+app/controllers/api/comments_controller.rb:43:in `comment_params'
+app/controllers/api/comments_controller.rb:20:in `create'
+Started POST "/api/comments" for ::1 at 2023-01-27 15:14:40 -0500
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"commenter"=>"Hamdi", "body"=>"Body of comment", "article_id"=>"1", "status"=>"private"}
+[31mUnpermitted parameter: :format. Context: { controller: Api::CommentsController, action: create, request: #<ActionDispatch::Request:0x00007f8b3b95c4a0>, params: {"commenter"=>"Hamdi", "body"=>"Body of comment", "article_id"=>"1", "status"=>"private", "format"=>"json", "controller"=>"api/comments", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/comments_controller.rb:22:in `create'
+  [1m[36mComment Create (0.5ms)[0m  [1m[32mINSERT INTO "comments" ("commenter", "body", "article_id", "created_at", "updated_at", "status") VALUES (?, ?, ?, ?, ?, ?)[0m  [["commenter", "Hamdi"], ["body", "Body of comment"], ["article_id", 1], ["created_at", "2023-01-27 20:14:40.175735"], ["updated_at", "2023-01-27 20:14:40.175735"], ["status", "private"]]
+  ↳ app/controllers/api/comments_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/comments_controller.rb:22:in `create'
+Completed 200 OK in 13ms (Views: 0.2ms | ActiveRecord: 5.1ms | Allocations: 6285)
+
+
+Started GET "/articles/4" for ::1 at 2023-01-27 15:14:47 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.2ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 4], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [2 times] (Duration: 0.9ms | Allocations: 376)
+  Rendered comments/_form.html.erb (Duration: 1.7ms | Allocations: 1364)
+  Rendered articles/show.html.erb within layouts/application (Duration: 14.4ms | Allocations: 8978)
+  Rendered layouts/_navBar.html.erb (Duration: 0.5ms | Allocations: 485)
+  Rendered layout layouts/application.html.erb (Duration: 28.9ms | Allocations: 31717)
+Completed 200 OK in 48ms (Views: 29.4ms | ActiveRecord: 1.6ms | Allocations: 41454)
+
+
+Started GET "/articles/4" for ::1 at 2023-01-27 15:14:48 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.1ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 4], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 4]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [2 times] (Duration: 1.0ms | Allocations: 294)
+  Rendered comments/_form.html.erb (Duration: 2.7ms | Allocations: 1198)
+  Rendered articles/show.html.erb within layouts/application (Duration: 8.0ms | Allocations: 3119)
+  Rendered layouts/_navBar.html.erb (Duration: 0.3ms | Allocations: 479)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | Allocations: 6046)
+Completed 200 OK in 15ms (Views: 11.4ms | ActiveRecord: 0.4ms | Allocations: 8165)
+
+
+Started POST "/api/comments" for ::1 at 2023-01-27 15:14:57 -0500
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"commenter"=>"Hamdi", "body"=>"Body of comment", "article_id"=>"1", "status"=>"private"}
+[31mUnpermitted parameter: :format. Context: { controller: Api::CommentsController, action: create, request: #<ActionDispatch::Request:0x00007f8b3b9bd318>, params: {"commenter"=>"Hamdi", "body"=>"Body of comment", "article_id"=>"1", "status"=>"private", "format"=>"json", "controller"=>"api/comments", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/comments_controller.rb:22:in `create'
+  [1m[36mComment Create (0.2ms)[0m  [1m[32mINSERT INTO "comments" ("commenter", "body", "article_id", "created_at", "updated_at", "status") VALUES (?, ?, ?, ?, ?, ?)[0m  [["commenter", "Hamdi"], ["body", "Body of comment"], ["article_id", 1], ["created_at", "2023-01-27 20:14:57.545892"], ["updated_at", "2023-01-27 20:14:57.545892"], ["status", "private"]]
+  ↳ app/controllers/api/comments_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (9.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/comments_controller.rb:22:in `create'
+Completed 200 OK in 15ms (Views: 0.1ms | ActiveRecord: 10.1ms | Allocations: 2064)
+
+
+Started GET "/articles/1" for ::1 at 2023-01-27 15:17:12 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.6ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 1], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "MonImage"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:6
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [5 times] (Duration: 0.9ms | Allocations: 638)
+  Rendered comments/_form.html.erb (Duration: 1.6ms | Allocations: 1290)
+  Rendered articles/show.html.erb within layouts/application (Duration: 74.7ms | Allocations: 33609)
+  Rendered layouts/_navBar.html.erb (Duration: 0.5ms | Allocations: 480)
+  Rendered layout layouts/application.html.erb (Duration: 79.2ms | Allocations: 36664)
+Completed 200 OK in 83ms (Views: 76.6ms | ActiveRecord: 3.5ms | Allocations: 38692)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ad7eba6d94c025fc6dea6d320bc9509248f186fc/1.PNG" for ::1 at 2023-01-27 15:17:12 -0500
+Processing by ActiveStorage::Blobs::RedirectController#show as */*
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ad7eba6d94c025fc6dea6d320bc9509248f186fc", "filename"=>"1"}
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[36m  Disk Storage (0.8ms) [0m[34mGenerated URL for file at key: nqqpyrzlxg8bgfofxw9oohtallug (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhibkZ4Y0hseWVteDRaemhpWjJadlpuaDNPVzl2YUhSaGJHeDFad1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpFdVVFNUhJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWN4TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDIzLTAxLTI3VDIwOjIyOjEyLjc3MloiLCJwdXIiOiJibG9iX2tleSJ9fQ==--8979e6730097f111da345319c5bfd6f6f229d9e3/1.PNG)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhibkZ4Y0hseWVteDRaemhpWjJadlpuaDNPVzl2YUhSaGJHeDFad1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpFdVVFNUhJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWN4TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDIzLTAxLTI3VDIwOjIyOjEyLjc3MloiLCJwdXIiOiJibG9iX2tleSJ9fQ==--8979e6730097f111da345319c5bfd6f6f229d9e3/1.PNG
+Completed 302 Found in 5ms (ActiveRecord: 0.1ms | Allocations: 2799)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhibkZ4Y0hseWVteDRaemhpWjJadlpuaDNPVzl2YUhSaGJHeDFad1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpFdVVFNUhJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWN4TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDIzLTAxLTI3VDIwOjIyOjEyLjc3MloiLCJwdXIiOiJibG9iX2tleSJ9fQ==--8979e6730097f111da345319c5bfd6f6f229d9e3/1.PNG" for ::1 at 2023-01-27 15:17:12 -0500
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"1"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 321)
+
+
+Started POST "/api/comments" for ::1 at 2023-01-27 15:17:28 -0500
+Processing by Api::CommentsController#create as JSON
+  Parameters: {"commenter"=>"Hamdi2", "body"=>"Body of comment", "article_id"=>"1", "status"=>"private"}
+[31mUnpermitted parameter: :format. Context: { controller: Api::CommentsController, action: create, request: #<ActionDispatch::Request:0x00007f8b800b5910>, params: {"commenter"=>"Hamdi2", "body"=>"Body of comment", "article_id"=>"1", "status"=>"private", "format"=>"json", "controller"=>"api/comments", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/comments_controller.rb:22:in `create'
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("commenter", "body", "article_id", "created_at", "updated_at", "status") VALUES (?, ?, ?, ?, ?, ?)[0m  [["commenter", "Hamdi2"], ["body", "Body of comment"], ["article_id", 1], ["created_at", "2023-01-27 20:17:28.672146"], ["updated_at", "2023-01-27 20:17:28.672146"], ["status", "private"]]
+  ↳ app/controllers/api/comments_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (8.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/comments_controller.rb:22:in `create'
+Completed 200 OK in 14ms (Views: 0.1ms | ActiveRecord: 8.8ms | Allocations: 2146)
+
+
+Started GET "/articles/1" for ::1 at 2023-01-27 15:17:32 -0500
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/articles_controller.rb:8:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mMonImage Load (0.1ms)[0m  [1m[34mSELECT "mon_images".* FROM "mon_images" WHERE "mon_images"."imageable_id" = ? AND "mon_images"."imageable_type" = ? LIMIT ?[0m  [["imageable_id", 1], ["imageable_type", "Article"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:5
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "MonImage"], ["name", "image"], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:6
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/articles/show.html.erb:6
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."article_id" = ?[0m  [["article_id", 1]]
+  ↳ app/views/articles/show.html.erb:17
+  Rendered collection of comments/_comment.html.erb [6 times] (Duration: 1.9ms | Allocations: 739)
+  Rendered comments/_form.html.erb (Duration: 2.2ms | Allocations: 1273)
+  Rendered articles/show.html.erb within layouts/application (Duration: 13.2ms | Allocations: 5651)
+  Rendered layouts/_navBar.html.erb (Duration: 0.4ms | Allocations: 479)
+  Rendered layout layouts/application.html.erb (Duration: 16.9ms | Allocations: 8615)
+Completed 200 OK in 21ms (Views: 16.6ms | ActiveRecord: 0.9ms | Allocations: 10783)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhibkZ4Y0hseWVteDRaemhpWjJadlpuaDNPVzl2YUhSaGJHeDFad1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpFdVVFNUhJanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWN4TGxCT1J3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEbWx0WVdkbEwzQnVad1k3QmxRNkVYTmxjblpwWTJWZmJtRnRaVG9LYkc5allXdz0iLCJleHAiOiIyMDIzLTAxLTI3VDIwOjIyOjEyLjc3MloiLCJwdXIiOiJibG9iX2tleSJ9fQ==--8979e6730097f111da345319c5bfd6f6f229d9e3/1.PNG" for ::1 at 2023-01-27 15:17:33 -0500
+Processing by ActiveStorage::DiskController#show as */*
+  Parameters: {"encoded_key"=>"[FILTERED]", "filename"=>"1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms | Allocations: 158)
+
+
+Started GET "/api/comments/13" for ::1 at 2023-01-27 15:18:22 -0500
+Processing by Api::CommentsController#show as JSON
+  Parameters: {"id"=>"13"}
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:15:in `show'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 1293)
+
+
+Started GET "/api/comments/14" for ::1 at 2023-01-27 15:18:28 -0500
+Processing by Api::CommentsController#show as JSON
+  Parameters: {"id"=>"14"}
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:15:in `show'
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.1ms | Allocations: 649)
+
+
+Started GET "/api/comments/15" for ::1 at 2023-01-27 15:18:32 -0500
+Processing by Api::CommentsController#show as JSON
+  Parameters: {"id"=>"15"}
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:15:in `show'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 648)
+
+
+Started GET "/api/comments/16" for ::1 at 2023-01-27 15:18:34 -0500
+Processing by Api::CommentsController#show as JSON
+  Parameters: {"id"=>"16"}
+  [1m[36mComment Load (0.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/api/comments_controller.rb:15:in `show'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 648)
+
+

@@ -11,97 +11,78 @@
 
     <script>
 
-      function addArticle(mytitle,mybody,mystatus){
-        $.ajax({
-          type: "POST",
-          url: "/api/articles",
-          data: {
-            title: mytitle,
-            body: mybody,
-            status: mystatus
-          }
-        });
-      }
 
-      function deleteArticle(id)
-      {
-        $.ajax({
-          type: 'DELETE',
-          url: "/api/articles/"+id,
-          data: id
-        })
+  function fetchArticle(id) {
+    $.ajax({
+      url: "/api/articles/"+id,
+      type: 'GET',
+      data: id,
+      success: function(data) {
+        console.log(JSON.stringify(data));
       }
-
-      function showArticle(id)
-      {
-        $.ajax({
-          url: "/api/articles/"+id,
-          type: 'GET',
-          data: id,
-          success: function( data ){ 
-        
-          console.log(JSON.stringify(data));
-          }
-        });
-      }
+    });
+  }
+  
 
 
-      function addComment(myCommenter,myBody,article_id,myStatus)
-      {
-        $.ajax({
-          type: "POST",
-          url: "/api/comments",
-          data: {
-            commenter: myCommenter,
-            body: myBody,
-            article_id: article_id,
-            status: myStatus
-          },
-          success: function( data ){ 
-        
-          console.log("SUCCESS");
-          }
-        });
+  function createComment(_commenter, _body, _articleId, _status) {
+    $.ajax({
+      type: "POST",
+      url: "/api/comments",
+      data: {
+        commenter: _commenter,
+        body: _body,
+        article_id: _articleId,
+        status: _status
+      },
+      success: function() {
+        console.log("SUCCESS");
       }
+    });
+  }
 
-      function showComment(id)
-      {
-        $.ajax({
-          url: "/api/comments/"+id,
-          type: 'GET',
-          data: id,
-          success: function( data ){ 
-        
-          console.log(JSON.stringify(data));
-          }
-        });
+  function fetchComment(id) {
+    $.ajax({
+      url: "/api/comments/"+id,
+      type: 'GET',
+      data: id,
+      success: function(data) {
+        console.log(JSON.stringify(data));
       }
-      function showComments(article_id)
-      {
-        $.ajax({
-          url: "/api/comments",
-          type: 'GET',
-          data: {id:article_id},
-          error: function( xhr ){ 
-          alert("ERROR ON SUBMIT");
-          },
-          success: function( data ){ 
-        
-          console.log(JSON.stringify(data));
-          }
-        });
-      }
+    });
+  }
 
-      function deleteComment(id)
-      {
-        $.ajax({
-          type: 'DELETE',
-          url: "/api/comments/"+id,
-          data: id
-        })
-      }
 
-    </script>
+
+
+
+
+
+  function fetchComments(articleId) {
+    $.ajax({
+      url: "/api/comments",
+      type: 'GET',
+      data: {id: articleId},
+      error: function() { 
+        alert("ERROR");
+      },
+      success: function(data) {
+        console.log(JSON.stringify(data));
+      }
+    });
+  }
+
+  function removeComment(id) {
+    $.ajax({
+      type: 'DELETE',
+      url: "/api/comments/"+id,
+      data: id
+    });
+  }
+
+</script>
+
+   
 
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
